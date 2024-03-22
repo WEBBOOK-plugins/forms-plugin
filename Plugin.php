@@ -116,7 +116,7 @@ class Plugin extends PluginBase
     public function registerSchedule($schedule): void
     {
         $schedule->call(function () {
-            MagicForm::gdprClean();
+            UploadForm::gdprClean();
         })->daily();
     }
 }

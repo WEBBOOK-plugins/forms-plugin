@@ -1,10 +1,10 @@
-1.0.0:
+v1.0.0:
     - First version of Magic Forms
     - create_records_table.php
-1.0.1:
+v1.0.1:
     - Fix invisible recaptcha issue with inline validation
     - Improve success and error message in component by providing a text inspector type instead of string
-1.0.2:
+v1.0.2:
     - Don't load filepond scripts if file upload is disabled
-1.0.3:
+v1.0.3:
     - Fix compatibility with october CMS 3.6

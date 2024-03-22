@@ -14,10 +14,7 @@ trait ReCaptcha
      */
     protected $translator;
 
-    /**
-     * @var string the active locale code
-     */
-    public $activeLocale;
+    public string $activeLocale;
 
     public function init(): void
     {

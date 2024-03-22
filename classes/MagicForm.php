@@ -18,9 +18,9 @@ abstract class MagicForm extends ComponentBase
     use ReCaptcha;
     use SharedProperties;
 
-    public $recaptcha_enabled;
-    public $recaptcha_misconfigured;
-    public $recaptcha_warn;
+    public bool $recaptcha_enabled;
+    public bool $recaptcha_misconfigured;
+    public ?string $recaptcha_warn;
 
     public function onRun(): void
     {
