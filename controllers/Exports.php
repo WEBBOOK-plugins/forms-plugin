@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WebBook\Forms\Controllers;
 
-use SplTempFileObject;
-use League\Csv\AbstractCsv;
 use Backend\Classes\Controller;
-use WebBook\Forms\Models\Record;
 use Backend\Facades\BackendMenu;
 use League\Csv\Writer as CsvWriter;
+use WebBook\Forms\Models\Record;
 
 class Exports extends Controller
 {
@@ -17,7 +17,7 @@ class Exports extends Controller
         'Backend.Behaviors.FormController',
     ];
 
-    public $formConfig = 'config_form.yaml';
+    public string $formConfig = 'config_form.yaml';
 
     public function __construct()
     {
@@ -33,26 +33,25 @@ class Exports extends Controller
 
     public function csv()
     {
-
         $records = Record::orderBy('created_at');
 
         // FILTER GROUPS
-        if (!empty($groups = post('Record.filter_groups'))) {
+        if (! empty($groups = post('Record.filter_groups'))) {
             $records->whereIn('group', $groups);
         }
 
         // FILTER DATE
-        if (!empty($date_after = post('Record.filter_date_after'))) {
+        if (! empty($date_after = post('Record.filter_date_after'))) {
             $records->whereDate('created_at', '>=', $date_after);
         }
 
         // FILTER DATE
-        if (!empty($date_before = post('Record.filter_date_before'))) {
+        if (! empty($date_before = post('Record.filter_date_before'))) {
             $records->whereDate('created_at', '<=', $date_before);
         }
 
         // CREATE CSV
-        $csv = CsvWriter::createFromFileObject(new SplTempFileObject());
+        $csv = CsvWriter::createFromFileObject(new \SplTempFileObject());
 
         // CHANGE DELIMTER
         if (post('Record.options_delimiter')) {
@@ -63,7 +62,7 @@ class Exports extends Controller
         $filteredRecords = $records->get();
         $record = $filteredRecords->first();
 
-        if(!empty($record)) {
+        if (! empty($record)) {
             // CSV HEADERS
             $headers = [];
 
@@ -77,23 +76,22 @@ class Exports extends Controller
                 ];
                 $headers = array_merge($meta_headers, $headers);
             }
-            
+
             $headers = array_merge($headers, array_keys($record->form_data));
 
             // ADD FILES HEADER
             if (post('Record.options_files')) {
                 $headers[] = __('Attached Files');
             }
-    
+
             // ADD HEADERS
             $csv->insertOne($headers);
         }
 
         // WRITE CSV LINES
         foreach ($records->get() as $row) {
-
             $data = (array) $row['form_data'];
-            
+
             // IF DATA IS ARRAY CONVERT TO JSON STRING
             foreach ($data as $field => $value) {
                 if (is_array($value) || is_object($value)) {
@@ -109,7 +107,7 @@ class Exports extends Controller
             // ADD ATTACHED FILES
             if (post('Record.options_files') && $row->files->count() > 0) {
                 $data['files'] = '';
-                foreach($row->files as $file) {
+                foreach ($row->files as $file) {
                     $data['files'] .= $file->path."\n";
                 }
             }
@@ -119,6 +117,6 @@ class Exports extends Controller
 
         // RETURN CSV
         $csv->output('records.csv');
-        exit();
+        exit;
     }
 }

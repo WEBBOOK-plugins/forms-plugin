@@ -1,38 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WebBook\Forms\Classes;
 
-use WebBook\Forms\Classes\BackendHelpers;
-use WebBook\Forms\Models\Settings;
 use RainLab\Translate\Classes\Translator;
+use WebBook\Forms\Models\Settings;
 
-trait ReCaptcha {
-
+trait ReCaptcha
+{
     /**
-     * @var RainLab\Translate\Classes\Translator Translator object.
+     * @var RainLab\Translate\Classes\Translator translator object
      */
     protected $translator;
 
     /**
-     * @var string The active locale code.
+     * @var string the active locale code
      */
     public $activeLocale;
 
-    public function init() {
+    public function init(): void
+    {
         if (BackendHelpers::isTranslatePlugin()) {
             $this->translator = Translator::instance();
         }
     }
 
-    private function isReCaptchaEnabled() {
-        return ($this->property('recaptcha_enabled') && Settings::get('recaptcha_site_key') != '' && Settings::get('recaptcha_secret_key') != '');
+    private function isReCaptchaEnabled(): bool
+    {
+        return $this->property('recaptcha_enabled') && '' != Settings::get('recaptcha_site_key') && '' != Settings::get('recaptcha_secret_key');
     }
 
-    private function isReCaptchaMisconfigured() {
-        return ($this->property('recaptcha_enabled') && (Settings::get('recaptcha_site_key') == '' || Settings::get('recaptcha_secret_key') == ''));
+    private function isReCaptchaMisconfigured(): bool
+    {
+        return $this->property('recaptcha_enabled') && ('' == Settings::get('recaptcha_site_key') || '' == Settings::get('recaptcha_secret_key'));
     }
 
-    private function loadReCaptcha() {
+    private function loadReCaptcha(): void
+    {
         $this->addJs('https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit', ['defer' => true]);
         $this->addJs('assets/js/recaptcha.js');
     }

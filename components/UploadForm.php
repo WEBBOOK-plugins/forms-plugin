@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WebBook\Forms\Components;
 
 use WebBook\Forms\Classes\MagicForm;
 
-class UploadForm extends MagicForm {
-
+class UploadForm extends MagicForm
+{
     public $uploader_enable;
     public $uploader_label;
     public $max_files;
@@ -13,21 +15,23 @@ class UploadForm extends MagicForm {
     public $max_totalsize;
     public $allowed_filetypes;
 
-    public function componentDetails() {
+    public function componentDetails(): array
+    {
         return [
             'name' => 'Upload form',
             'description' => 'Create an upload form',
         ];
     }
 
-    public function defineProperties() {
+    public function defineProperties(): array
+    {
         $properties = [
             'mail_uploads' => [
                 'title' => __('Attach uploaded files'),
                 'type' => 'checkbox',
                 'default' => false,
                 'group' => __('Notification settings'),
-                'showExternalParam' => false
+                'showExternalParam' => false,
             ],
             'uploader_enable' => [
                 'title' => __('Enable upload'),
@@ -42,7 +46,7 @@ class UploadForm extends MagicForm {
                 'default' => 'Drag & Drop your files or Browse',
                 'group' => __('Upload files'),
                 'showExternalParam' => false,
-                'validation' => ['required' => ['message' => __('Uploader label is required')]]
+                'validation' => ['required' => ['message' => __('Uploader label is required')]],
             ],
             'maxFiles' => [
                 'title' => __('Max number of files'),
@@ -73,19 +77,21 @@ class UploadForm extends MagicForm {
                 'showExternalParam' => false,
             ],
         ];
+
         return array_merge(parent::defineProperties(), $properties);
     }
-    
-    public function onRun() {
+
+    public function onRun(): void
+    {
         parent::onRun();
-        
+
         $this->uploader_enable = $this->property('uploader_enable');
         if ($this->uploader_enable) {
             $this->addCss('assets/vendor/filepond/filepond.css');
             $this->addJs('assets/vendor/filepond/filepond-plugin-file-validate-type.js', ['defer' => true]);
             $this->addJs('assets/vendor/filepond/filepond-plugin-file-validate-size.js', ['defer' => true]);
             $this->addJs('assets/vendor/filepond/filepond.js', ['defer' => true]);
-            
+
             $this->uploader_label = $this->property('uploader_label');
             $this->max_files = $this->property('maxFiles');
             $this->max_files = $this->property('maxFiles');

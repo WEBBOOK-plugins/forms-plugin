@@ -3,7 +3,7 @@
     "type": "october-plugin",
     "description": "Create easy (and almost magic) AJAX forms",
     "keywords": ["october", "cms", "plugin", "forms", "magic forms"],
-    "homepage": "https://github.com/webbook/forms-plugin",
+    "homepage": "https://github.com/WEBBOOK-plugins/forms-plugin",
     "license": "MIT",
     "authors": [
         {

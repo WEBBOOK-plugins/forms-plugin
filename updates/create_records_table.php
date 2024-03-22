@@ -1,18 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace WebBook\Forms\Updates;
 
-use October\Rain\Support\Facades\Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
+use October\Rain\Support\Facades\Schema;
 
-class CreateRecordsTable extends Migration
-{
-    public function up()
+/*
+ * CreateRecordsTable Migration
+ */
+return new class() extends Migration {
+    /**
+     * up builds the migration.
+     */
+    public function up(): void
     {
         Schema::create('webbook_forms_records', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
+            $table->id();
             $table->string('group')->default('None');
             $table->text('form_data')->nullable();
             $table->string('ip')->nullable();
@@ -21,8 +27,11 @@ class CreateRecordsTable extends Migration
         });
     }
 
-    public function down()
+    /**
+     * down reverses the migration.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('webbook_forms_records');
     }
-}
+};
