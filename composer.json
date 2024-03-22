@@ -1,8 +1,26 @@
 {
-    "name": "publipresse/forms-plugin",
+    "name": "webbook/forms-plugin",
     "type": "october-plugin",
     "description": "Create easy (and almost magic) AJAX forms",
     "keywords": ["october", "cms", "plugin", "forms", "magic forms"],
-    "homepage": "https://github.com/publipresse/oc-forms-plugin",
-    "license": "MIT"
+    "homepage": "https://github.com/webbook/forms-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Zbořil",
+            "email": "martin@webbook.page",
+            "role": "Co-founder"
+        },
+        {
+            "name": "Jiří Synáček",
+            "email": "jirka@webbook.page",
+            "role": "Co-founder"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1.0",
+        "php": "^8.0.2",
+        "october/rain": ">=3.0"
+    },
+    "minimum-stability": "dev"
 }

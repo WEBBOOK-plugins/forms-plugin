@@ -1,13 +1,13 @@
 <?php
 
-namespace Publipresse\Forms\Controllers;
+namespace WebBook\Forms\Controllers;
 
 
 use App;
 use Flash;
 use Redirect;
 use Lang;
-use Publipresse\Forms\Models\Record;
+use WebBook\Forms\Models\Record;
 
 use Backend\Facades\Backend;
 use Backend\Classes\Controller;
@@ -20,7 +20,7 @@ class Records extends Controller {
     
     public $listConfig = [];
    
-    public $requiredPermissions = ['publipresse.forms.access_records'];
+    public $requiredPermissions = ['webbook.forms.access_records'];
 
     public function __construct() {
         // Define dynamic $listConfig depending on the group
@@ -31,9 +31,9 @@ class Records extends Controller {
         // Change menu context depending on the group
         $group = get('group');
         if(!empty($group)) {
-            BackendMenu::setContext('Publipresse.Forms', 'forms', str_slug($group));
+            BackendMenu::setContext('WebBook.Forms', 'forms', str_slug($group));
         } else {
-            BackendMenu::setContext('Publipresse.Forms', 'forms', 'records');
+            BackendMenu::setContext('WebBook.Forms', 'forms', 'records');
         }
     }
 
@@ -62,7 +62,7 @@ class Records extends Controller {
         $id = post('id');
         $record = Record::findOrFail($id);
         $record->delete();
-        return Redirect::to(Backend::url('publipresse/forms/records'));
+        return Redirect::to(Backend::url('webbook/forms/records'));
     }
 
     public function listInjectRowClass($record, $definition = null) {
@@ -86,7 +86,7 @@ class Records extends Controller {
     }
 
     public function onGDPRClean() {
-        if ($this->user->hasPermission(['publipresse.forms.gdpr_cleanup'])) {
+        if ($this->user->hasPermission(['webbook.forms.gdpr_cleanup'])) {
             MagicForm::gdprClean();
             Flash::success(__("GDPR cleanup was executed successfully"));
         } else {

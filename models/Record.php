@@ -1,13 +1,13 @@
 <?php
 
-namespace Publipresse\Forms\Models;
+namespace WebBook\Forms\Models;
 
 use Backend\Facades\Backend;
 use October\Rain\Database\Model;
 
 class Record extends Model {
 
-    public $table = 'publipresse_forms_records';
+    public $table = 'webbook_forms_records';
 
     public $timestamps = true;
 
@@ -29,7 +29,7 @@ class Record extends Model {
 
     public function filesList() {
         return $this->files->map(function ($file) {
-            return Backend::url('publipresse/forms/records/download', [$this->id, $file->id]);
+            return Backend::url('webbook/forms/records/download', [$this->id, $file->id]);
         })->implode(',');
     }
 

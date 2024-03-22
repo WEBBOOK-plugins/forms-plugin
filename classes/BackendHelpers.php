@@ -1,6 +1,6 @@
 <?php
 
-namespace Publipresse\Forms\Classes;
+namespace WebBook\Forms\Classes;
 
 use Backend;
 use BackendAuth;

@@ -1,7 +1,7 @@
 <div id="records-toolbar" data-control="toolbar">
 
     <?php
-        echo $this->makePartial('$/publipresse/forms/controllers/records/partials/_action_button.htm', [
+        echo $this->makePartial('$/webbook/forms/controllers/records/partials/_action_button.htm', [
             'type'            => 'danger',
             'icon'            => 'oc-icon-trash',
             'label'           => e(trans('backend::lang.list.delete_selected')),
@@ -24,7 +24,7 @@
 
     <div class="btn-group">
     <?php
-        echo $this->makePartial('$/publipresse/forms/controllers/records/partials/_action_button.htm', [
+        echo $this->makePartial('$/webbook/forms/controllers/records/partials/_action_button.htm', [
             'type'            => 'default',
             'icon'            => 'oc-icon-eye-slash',
             'label'           => __('Mark as Unread'),
@@ -39,7 +39,7 @@
             ",
         ]);
 
-        echo $this->makePartial('$/publipresse/forms/controllers/records/partials/_action_button.htm', [
+        echo $this->makePartial('$/webbook/forms/controllers/records/partials/_action_button.htm', [
             'type'            => 'default',
             'icon'            => 'oc-icon-eye',
             'label'           => __('Mark as Read'),
@@ -57,8 +57,8 @@
     </div>
 
     <?php
-        if(Publipresse\Forms\Models\Settings::get('gdpr_enable')) {
-            echo $this->makePartial('$/publipresse/forms/controllers/records/partials/_action_button.htm', [
+        if(WebBook\Forms\Models\Settings::get('gdpr_enable')) {
+            echo $this->makePartial('$/webbook/forms/controllers/records/partials/_action_button.htm', [
                 'type'            => 'danger',
                 'icon'            => 'oc-icon-history',
                 'label'           => __('GDPR Clean'),

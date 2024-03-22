@@ -1,2 +1,2 @@
-form      : $/publipresse/forms/models/export/fields.yaml
-modelClass: Publipresse\Forms\Models\Record
+form      : $/webbook/forms/models/export/fields.yaml
+modelClass: WebBook\Forms\Models\Record

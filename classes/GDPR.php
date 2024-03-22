@@ -1,11 +1,11 @@
 <?php
 
-namespace Publipresse\Forms\Classes;
+namespace WebBook\Forms\Classes;
 
 use Flash;
 use Carbon\Carbon;
-use Publipresse\Forms\Models\Record;
-use Publipresse\Forms\Models\Settings;
+use WebBook\Forms\Models\Record;
+use WebBook\Forms\Models\Settings;
 
 class GDPR
 {

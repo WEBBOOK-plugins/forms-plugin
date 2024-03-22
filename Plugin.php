@@ -1,13 +1,13 @@
 <?php
 
-namespace Publipresse\Forms;
+namespace WebBook\Forms;
 
 use Lang;
 use Validator;
 
-use Publipresse\Forms\Classes\BackendHelpers;
-use Publipresse\Forms\Models\Settings;
-use Publipresse\Forms\Models\Record;
+use WebBook\Forms\Classes\BackendHelpers;
+use WebBook\Forms\Models\Settings;
+use WebBook\Forms\Models\Record;
 
 use Backend\Facades\Backend;
 use System\Classes\PluginBase;
@@ -20,9 +20,9 @@ class Plugin extends PluginBase
         return [
             'name' => __('Magic forms'),
             'description' => __('Create easy ajax forms'),
-            'author' => 'Publipresse',
+            'author' => 'WebBook',
             'icon' => 'icon-bolt',
-            'homepage' => 'https://github.com/publipresse/oc-forms-plugin'
+            'homepage' => 'https://github.com/webbook/oc-forms-plugin'
         ];
     }
 
@@ -33,16 +33,16 @@ class Plugin extends PluginBase
             'forms' => [
                 'label' => __('Forms'),
                 'icon' => 'icon-bolt',
-                'url' => BackendHelpers::getBackendURL(['publipresse.forms.access_records' => 'publipresse/forms/records', 'publipresse.forms.access_exports' => 'publipresse/forms/exports'], 'publipresse.forms.access_records'),
-                'permissions' => ['publipresse.forms.*'],
+                'url' => BackendHelpers::getBackendURL(['webbook.forms.access_records' => 'webbook/forms/records', 'webbook.forms.access_exports' => 'webbook/forms/exports'], 'webbook.forms.access_records'),
+                'permissions' => ['webbook.forms.*'],
                 'counter' => Record::getUnread(),
                 'counterLabel' => __('Unread messages'),
                 'sideMenu' => [
                     'records' => [
                         'label' => __('All records'),
                         'icon' => 'icon-database',
-                        'url' => Backend::url('publipresse/forms/records'),
-                        'permissions' => ['publipresse.forms.access_records'],
+                        'url' => Backend::url('webbook/forms/records'),
+                        'permissions' => ['webbook.forms.access_records'],
                         'counter' => Record::getUnread(),
                         'counterLabel' => __('Unread messages'),
                     ],
@@ -57,8 +57,8 @@ class Plugin extends PluginBase
             $menu['forms']['sideMenu'][$slug] = [
                 'label' => $group,
                 'icon' => 'icon-database',
-                'url' => Backend::url('publipresse/forms/records?group='.$group),
-                'permissions' => ['publipresse.forms.access_records'],
+                'url' => Backend::url('webbook/forms/records?group='.$group),
+                'permissions' => ['webbook.forms.access_records'],
                 'counter' => Record::getUnread($group),
                 'counterLabel' => __('Unread messages'),
             ];
@@ -68,8 +68,8 @@ class Plugin extends PluginBase
         $menu['forms']['sideMenu']['exports'] = [
             'label' => __('Export'),
             'icon' => 'icon-download',
-            'url' => Backend::url('publipresse/forms/exports'),
-            'permissions' => ['publipresse.forms.access_exports']
+            'url' => Backend::url('webbook/forms/exports'),
+            'permissions' => ['webbook.forms.access_exports']
         ];
         return $menu;
     }
@@ -81,8 +81,8 @@ class Plugin extends PluginBase
                 'description' => __('Configure magic forms parameters'),
                 'category' => SettingsManager::CATEGORY_CMS,
                 'icon' => 'icon-bolt',
-                'class' => 'Publipresse\Forms\Models\Settings',
-                'permissions' => ['publipresse.forms.access_settings'],
+                'class' => 'WebBook\Forms\Models\Settings',
+                'permissions' => ['webbook.forms.access_settings'],
                 'order' => 500
             ]
         ];
@@ -90,23 +90,23 @@ class Plugin extends PluginBase
 
     public function registerPermissions() {
         return [
-            'publipresse.forms.access_settings' => ['tab' => __('Magic forms'), 'label' => __('Access settings')],
-            'publipresse.forms.access_records' => ['tab' => __('Magic forms'), 'label' => __('Access records')],
-            'publipresse.forms.access_exports' => ['tab' => __('Magic forms'), 'label' => __('Can export records')],
-            'publipresse.forms.gdpr_cleanup' => ['tab' => __('Magic forms'), 'label' => __('Gdpr cleanup')],
+            'webbook.forms.access_settings' => ['tab' => __('Magic forms'), 'label' => __('Access settings')],
+            'webbook.forms.access_records' => ['tab' => __('Magic forms'), 'label' => __('Access records')],
+            'webbook.forms.access_exports' => ['tab' => __('Magic forms'), 'label' => __('Can export records')],
+            'webbook.forms.gdpr_cleanup' => ['tab' => __('Magic forms'), 'label' => __('Gdpr cleanup')],
         ];
     }
 
     public function registerComponents() {
         return [
-            'Publipresse\Forms\Components\UploadForm' => 'uploadForm',
+            'WebBook\Forms\Components\UploadForm' => 'uploadForm',
         ];
     }
 
     public function registerMailTemplates() {
         return [
-            'publipresse.forms::mail.notification',
-            'publipresse.forms::mail.autoresponse',
+            'webbook.forms::mail.notification',
+            'webbook.forms::mail.autoresponse',
         ];
     }
 

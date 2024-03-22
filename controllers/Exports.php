@@ -1,17 +1,17 @@
 <?php
 
-namespace Publipresse\Forms\Controllers;
+namespace WebBook\Forms\Controllers;
 
 use SplTempFileObject;
 use League\Csv\AbstractCsv;
 use Backend\Classes\Controller;
-use Publipresse\Forms\Models\Record;
+use WebBook\Forms\Models\Record;
 use Backend\Facades\BackendMenu;
 use League\Csv\Writer as CsvWriter;
 
 class Exports extends Controller
 {
-    public $requiredPermissions = ['publipresse.forms.access_exports'];
+    public $requiredPermissions = ['webbook.forms.access_exports'];
 
     public $implement = [
         'Backend.Behaviors.FormController',
@@ -22,7 +22,7 @@ class Exports extends Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('Publipresse.Forms', 'forms', 'exports');
+        BackendMenu::setContext('WebBook.Forms', 'forms', 'exports');
     }
 
     public function index()

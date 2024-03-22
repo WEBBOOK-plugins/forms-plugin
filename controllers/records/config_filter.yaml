@@ -3,7 +3,7 @@ scopes:
     group:
         label: Groups
         type: group
-        modelClass: Publipresse\Forms\Models\Record
+        modelClass: WebBook\Forms\Models\Record
         options: filterGroups
         conditions: "`group` in (:filtered)"
 

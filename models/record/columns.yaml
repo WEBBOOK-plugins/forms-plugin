@@ -20,14 +20,14 @@ columns:
     form_data_summary:
         label : Fields (summary)
         type : partial
-        path : $/publipresse/forms/models/record/fields/_stored_fields.htm
+        path : $/webbook/forms/models/record/fields/_stored_fields.htm
         searchable: false
         valueFrom: form_data
 
     form_data_details:
         label : Fields (details)
         type : partial
-        path : $/publipresse/forms/models/record/fields/_stored_fields.htm
+        path : $/webbook/forms/models/record/fields/_stored_fields.htm
         searchable: false
         invisible: true
         valueFrom: form_data
@@ -35,7 +35,7 @@ columns:
     files:
         label : Attached files
         type : partial
-        path : $/publipresse/forms/models/record/fields/_files_fields.htm
+        path : $/webbook/forms/models/record/fields/_files_fields.htm
         searchable: false
         sortable : false
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Publipresse\Forms\Classes;
+namespace WebBook\Forms\Classes;
 
-use Publipresse\Forms\Classes\BackendHelpers;
-use Publipresse\Forms\Models\Settings;
+use WebBook\Forms\Classes\BackendHelpers;
+use WebBook\Forms\Models\Settings;
 use RainLab\Translate\Classes\Translator;
 
 trait ReCaptcha {

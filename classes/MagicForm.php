@@ -1,6 +1,6 @@
 <?php
 
-namespace Publipresse\Forms\Classes;
+namespace WebBook\Forms\Classes;
 
 
 use App;
@@ -21,15 +21,15 @@ use Carbon\Carbon;
 
 use Cms\Classes\ComponentBase;
 
-use Publipresse\Forms\Models\Record;
-use Publipresse\Forms\Models\Settings;
-use Publipresse\Forms\Classes\SendMail;
-use Publipresse\Forms\Classes\BackendHelpers;
+use WebBook\Forms\Models\Record;
+use WebBook\Forms\Models\Settings;
+use WebBook\Forms\Classes\SendMail;
+use WebBook\Forms\Classes\BackendHelpers;
 
 abstract class MagicForm extends ComponentBase {
 
-    use \Publipresse\Forms\Classes\ReCaptcha;
-    use \Publipresse\Forms\Classes\SharedProperties;
+    use \WebBook\Forms\Classes\ReCaptcha;
+    use \WebBook\Forms\Classes\SharedProperties;
 
     public $recaptcha_enabled;
     public $recaptcha_misconfigured;
@@ -156,7 +156,7 @@ abstract class MagicForm extends ComponentBase {
         unset($post['_token'], $post['g-recaptcha-response'], $post['_session_key'], $post['files']);
         
         // FIRE BEFORE SAVE EVENT
-        Event::fire('publipresse.forms.beforeSaveRecord', [&$post, $this]);
+        Event::fire('webbook.forms.beforeSaveRecord', [&$post, $this]);
         
         if (count($custom_attributes)) {
             $post = collect($post)->mapWithKeys(function ($val, $key) use ($custom_attributes) {
@@ -189,7 +189,7 @@ abstract class MagicForm extends ComponentBase {
         }
 
         // FIRE AFTER SAVE EVENT
-        Event::fire('publipresse.forms.afterSaveRecord', [&$post, $this, $record]);
+        Event::fire('webbook.forms.afterSaveRecord', [&$post, $this, $record]);
 
         // CHECK FOR REDIRECT
         if ($this->property('redirect')) {

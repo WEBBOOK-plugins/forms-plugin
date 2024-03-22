@@ -1,6 +1,6 @@
 <?php
 
-namespace Publipresse\Forms\Updates;
+namespace WebBook\Forms\Updates;
 
 use October\Rain\Support\Facades\Schema;
 use October\Rain\Database\Schema\Blueprint;
@@ -10,7 +10,7 @@ class CreateRecordsTable extends Migration
 {
     public function up()
     {
-        Schema::create('publipresse_forms_records', function (Blueprint $table) {
+        Schema::create('webbook_forms_records', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('group')->default('None');
@@ -23,6 +23,6 @@ class CreateRecordsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('publipresse_forms_records');
+        Schema::dropIfExists('webbook_forms_records');
     }
 }

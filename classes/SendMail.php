@@ -1,12 +1,12 @@
 <?php
 
-namespace Publipresse\Forms\Classes;
+namespace WebBook\Forms\Classes;
 
 use Mail;
 use System\Models\MailTemplate;
-use Publipresse\Forms\Classes\BackendHelpers;
+use WebBook\Forms\Classes\BackendHelpers;
 
-use Publipresse\Forms\Models\Settings;
+use WebBook\Forms\Models\Settings;
 
 class SendMail {
 
@@ -25,7 +25,7 @@ class SendMail {
         if (is_array($properties['mail_recipients']) || is_array($properties['mail_bcc'])) {
 
             // CUSTOM TEMPLATE
-            $template = isset($properties['mail_template']) && $properties['mail_template'] != '' && MailTemplate::findOrMakeTemplate($properties['mail_template']) ? $properties['mail_template'] : 'publipresse.forms::mail.notification';
+            $template = isset($properties['mail_template']) && $properties['mail_template'] != '' && MailTemplate::findOrMakeTemplate($properties['mail_template']) ? $properties['mail_template'] : 'webbook.forms::mail.notification';
 
             $data = [
                 'id' => $record->id,
@@ -125,7 +125,7 @@ class SendMail {
         if (filter_var($to, FILTER_VALIDATE_EMAIL) && filter_var($from, FILTER_VALIDATE_EMAIL)) {
 
             // CUSTOM TEMPLATE
-            $template = isset($properties['mail_resp_template']) && $properties['mail_resp_template'] != '' && MailTemplate::findOrMakeTemplate($properties['mail_resp_template']) ? $properties['mail_resp_template'] : 'publipresse.forms::mail.autoresponse';
+            $template = isset($properties['mail_resp_template']) && $properties['mail_resp_template'] != '' && MailTemplate::findOrMakeTemplate($properties['mail_resp_template']) ? $properties['mail_resp_template'] : 'webbook.forms::mail.autoresponse';
 
             Mail::sendTo($to, $template, [
                     'id'   => $record->id,

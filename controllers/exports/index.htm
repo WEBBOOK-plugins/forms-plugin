@@ -1,11 +1,11 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?php echo Backend::url('publipresse/forms/records') ?>"><?php echo __('Records') ?></a></li>
+        <li><a href="<?php echo Backend::url('webbook/forms/records') ?>"><?php echo __('Records') ?></a></li>
         <li><?php echo __('Export') ?></li>
     </ul>
 <?php Block::endPut() ?>
 
-<?php echo Form::open(['url' => Backend::url('publipresse/forms/exports/csv/')]) ?>
+<?php echo Form::open(['url' => Backend::url('webbook/forms/exports/csv/')]) ?>
 
     <?php echo $this->formRender() ?>
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Publipresse\Forms\Components;
+namespace WebBook\Forms\Components;
 
-use Publipresse\Forms\Classes\MagicForm;
+use WebBook\Forms\Classes\MagicForm;
 
 class UploadForm extends MagicForm {
 
